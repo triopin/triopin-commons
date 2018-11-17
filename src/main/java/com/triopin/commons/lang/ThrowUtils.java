@@ -7,7 +7,7 @@ public class ThrowUtils {
 	}
 
 	public static void noInstance() {
-		throw new AssertionError("Creation of instance not alowed");
+		throw new AssertionError("Instance creation not alowed");
 	}
 
 	public static final RuntimeException rethrow(Throwable e) {
