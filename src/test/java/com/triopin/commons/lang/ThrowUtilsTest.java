@@ -9,7 +9,12 @@ import org.junit.Test;
 public class ThrowUtilsTest {
 
 	@Test(expected = AssertionError.class)
-	public void noInstance() {
+	public void noInstanceFromConstructor() {
+		new NoInstance();
+	}
+
+	@Test(expected = UnsupportedOperationException.class)
+	public void noInstanceFromMethod() {
 		ThrowUtils.noInstance();
 	}
 
@@ -23,5 +28,12 @@ public class ThrowUtilsTest {
 	@Test(expected = IOException.class)
 	public void rethrow() {
 		ThrowUtils.rethrow(new IOException());
+	}
+
+	private static class NoInstance {
+
+		private NoInstance() {
+			ThrowUtils.noInstance();
+		}
 	}
 }
