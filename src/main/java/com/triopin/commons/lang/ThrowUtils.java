@@ -8,28 +8,24 @@ public class ThrowUtils {
 
 	public static void noInstance() {
 		StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-		String invokerClassName = null;
-		if (stackTrace != null && stackTrace.length > 0) {
-			for (StackTraceElement o : stackTrace) {
-				if ("<init>".equals(o.getMethodName())) {
-					invokerClassName = o.getClassName();
-					break;
-				}
+		if(stackTrace.length >= 3) {
+			//	0 : java.lang.Thread.getStackTrace()
+			//	1 : com.triopin.commons.lang.ThrowUtils.noInstance()
+			//	2 : Always contained method noInstance() invoker element
+			StackTraceElement involkerElement = stackTrace[2];
+			if ("<init>".equals(involkerElement.getMethodName())) {
+				throw new AssertionError("No instances of class "
+						+ involkerElement.getClassName());
 			}
 		}
-		if (invokerClassName != null) {
-			throw new AssertionError(
-					"Instance creation of class " + invokerClassName + " not alowed");
-		} else {
-			throw new UnsupportedOperationException(
-					"Method ThrowUtils.noInstance() should be used from constructors");
-		}
+		throw new UnsupportedOperationException(
+				"This method should be used from constructors");
 	}
 
 	public static final RuntimeException rethrow(Throwable e) {
 		ThrowUtils.<RuntimeException>throwAny(e);
 
-		// This throw actually never happens 
+		// This throw should actually never happen
 		throw new IllegalStateException(e);
 	}
 
