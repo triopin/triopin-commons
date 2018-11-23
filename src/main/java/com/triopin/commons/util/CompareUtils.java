@@ -22,9 +22,11 @@ public class CompareUtils {
 	 * @param v1 the v 1
 	 * @param v2 the v 2
 	 * @return the int
-	 * @deprecated this method has been replaced by 
-	 * {@code org.apache.commons.lang3.ObjectUtils.compare(Comparable, Comparable)} 
-	 * in Apache Commons and will be removed from future releases.
+	 * @deprecated this method has replacements by Apache Commons<br/>
+	 *             {@link org.apache.commons.lang3.ObjectUtils#compare(Comparable, Comparable)} for
+	 *             Java 7+ and <br/>
+	 *             {@link org.apache.commons.lang.ObjectUtils#compare(Comparable, Comparable)}
+	 *             for Java 1.2+
 	 */
 	@Deprecated
 	public static final <T extends Comparable<T>> int compare(T v1, T v2) {
@@ -36,13 +38,23 @@ public class CompareUtils {
 			}
 		} else if (v2 == null) {
 			return -1;
-		} else	if (v1 == v2) {
+		} else if (v1 == v2) {
 			return 0;
 		} else {
 			return v1.compareTo(v2);
 		}
 	}
 
+	/**
+	 * Compares two {@code long} values numerically.
+	 * 
+	 * @param x the first {@code long} to compare
+	 * @param y the second {@code long} to compare
+	 * @return the value {@code 0} if {@code x == y};
+	 *         a value less than {@code 0} if {@code x < y}; and
+	 *         a value greater than {@code 0} if {@code x > y}
+	 * @deprecated Since 1.7 Java has replacement {@link java.lang.Long#compare(int, int)}
+	 */
 	public static final int compare(long v1, long v2) {
 		if (v1 > v2) {
 			return +1;
@@ -53,6 +65,16 @@ public class CompareUtils {
 		}
 	}
 
+	/**
+	 * Compares two {@code int} values numerically.
+	 * 
+	 * @param x the first {@code int} to compare
+	 * @param y the second {@code int} to compare
+	 * @return the value {@code 0} if {@code x == y};
+	 *         a value less than {@code 0} if {@code x < y}; and
+	 *         a value greater than {@code 0} if {@code x > y}
+	 * @deprecated Since 1.7 Java has replacement {@link java.lang.Integer#compare(long, long)}
+	 */
 	public static final int compare(int v1, int v2) {
 		if (v1 > v2) {
 			return +1;
@@ -63,14 +85,44 @@ public class CompareUtils {
 		}
 	}
 
+	/**
+	 * Compares two {@code short} values numerically.
+	 * 
+	 * @param x the first {@code short} to compare
+	 * @param y the second {@code short} to compare
+	 * @return the value {@code 0} if {@code x == y};
+	 *         a value less than {@code 0} if {@code x < y}; and
+	 *         a value greater than {@code 0} if {@code x > y}
+	 * @deprecated Since 1.7 Java has replacement {@link java.lang.Short#compare(short, short)}
+	 */
 	public static final int compare(short v1, short v2) {
 		return v1 - v2;
 	}
 
+	/**
+	 * Compares two {@code byte} values numerically.
+	 * 
+	 * @param x the first {@code byte} to compare
+	 * @param y the second {@code byte} to compare
+	 * @return the value {@code 0} if {@code x == y};
+	 *         a value less than {@code 0} if {@code x < y}; and
+	 *         a value greater than {@code 0} if {@code x > y}
+	 * @deprecated Since 1.7 Java has replacement {@link java.lang.Byte#compare(byte, byte)}
+	 */
 	public static final int compare(byte v1, byte v2) {
 		return v1 - v2;
 	}
 
+	/**
+	 * Compares two {@code char} values numerically.
+	 * 
+	 * @param x the first {@code char} to compare
+	 * @param y the second {@code char} to compare
+	 * @return the value {@code 0} if {@code x == y};
+	 *         a value less than {@code 0} if {@code x < y}; and
+	 *         a value greater than {@code 0} if {@code x > y}
+	 * @deprecated Since 1.7 Java has replacement {@link java.lang.Character#compare(char, char)}
+	 */
 	public static final int compare(char v1, char v2) {
 		if (v1 > v2) {
 			return +1;
@@ -81,6 +133,16 @@ public class CompareUtils {
 		}
 	}
 
+	/**
+	 * Compares two {@code float} values numerically.
+	 * 
+	 * @param x the first {@code float} to compare
+	 * @param y the second {@code float} to compare
+	 * @return the value {@code 0} if {@code x == y};
+	 *         a value less than {@code 0} if {@code x < y}; and
+	 *         a value greater than {@code 0} if {@code x > y}
+	 * @deprecated Since 1.7 Java has replacement {@link java.lang.Float#compare(float, float)}
+	 */
 	public static final int compare(float v1, float v2) {
 		if (v1 > v2) {
 			return +1;
@@ -91,6 +153,16 @@ public class CompareUtils {
 		}
 	}
 
+	/**
+	 * Compares two {@code double} values numerically.
+	 * 
+	 * @param x the first {@code double} to compare
+	 * @param y the second {@code double} to compare
+	 * @return the value {@code 0} if {@code x == y};
+	 *         a value less than {@code 0} if {@code x < y}; and
+	 *         a value greater than {@code 0} if {@code x > y}
+	 * @deprecated Since 1.7 Java has replacement {@link java.lang.Double#compare(double, double)}
+	 */
 	public static final int compare(double v1, double v2) {
 		if (v1 > v2) {
 			return +1;
@@ -101,6 +173,16 @@ public class CompareUtils {
 		}
 	}
 
+	/**
+	 * Compares two {@code boolean} values numerically.
+	 * 
+	 * @param x the first {@code boolean} to compare
+	 * @param y the second {@code boolean} to compare
+	 * @return the value {@code 0} if {@code x == y};
+	 *         a value less than {@code 0} if {@code x < y}; and
+	 *         a value greater than {@code 0} if {@code x > y}
+	 * @deprecated Since 1.7 Java has replacement {@link java.lang.Boolean#compare(boolean, boolean)}
+	 */
 	public static final int compare(boolean v1, boolean v2) {
 		if (v1 == v2) {
 			return 0;
@@ -111,54 +193,6 @@ public class CompareUtils {
 		}
 	}
 
-	public static final <T extends Comparable<T>> int compare(T[] v1, T[] v2) {
-		if (v1 == null) {
-			if (v2 == null) {
-				return 0;
-			} else {
-				return +1;
-			}
-		}
-		if (v1 == v2) {
-			return 0;
-		}
-		if (v2 == null) {
-			return -1;
-		}
-		int len = Math.min(v1.length, v2.length);
-		for (int i = 0; i < len; i++) {
-			int c = compare(v1[i], v2[i]);
-			if (c != 0) {
-				return (i + 1) * c;
-			}
-		}
-		return len * compare(v1.length, v2.length);
-	}
-
-	public static final int compare(long[] v1, long[] v2) {
-		if (v1 == null) {
-			if (v2 == null) {
-				return 0;
-			} else {
-				return +1;
-			}
-		}
-		if (v1 == v2) {
-			return 0;
-		}
-		if (v2 == null) {
-			return -1;
-		}
-		int len = Math.min(v1.length, v2.length);
-		for (int i = 0; i < len; i++) {
-			int c = compare(v1[i], v2[i]);
-			if (c != 0) {
-				return (i + 1) * c;
-			}
-		}
-		return len * compare(v1.length, v2.length);
-	}
-	
 	/**
 	 * Compare two <a href = "https://semver.org/">Semantic Versioning 2.0.0</a> strings.
 	 *

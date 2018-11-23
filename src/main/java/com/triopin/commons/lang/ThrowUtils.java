@@ -6,6 +6,10 @@ public class ThrowUtils {
 		noInstance();
 	}
 
+	/**
+	 * Method to protect private utility classes constructor from creating instances 
+	 * even using reflection framework.
+	 */
 	public static void noInstance() {
 		StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
 		if(stackTrace.length >= 3) {
@@ -22,6 +26,12 @@ public class ThrowUtils {
 				"This method should be used from constructors");
 	}
 
+	/**
+	 * Rethrows given throwable as runtime exception.
+	 *
+	 * @param e the e
+	 * @return the runtime exception
+	 */
 	public static final RuntimeException rethrow(Throwable e) {
 		ThrowUtils.<RuntimeException>throwAny(e);
 

@@ -9,13 +9,12 @@ public class TextUtils {
 	}
 
 	/**
-	 * Format period.
+	 * Formats given time period in miliseconds to HH:mm:ss format string.<p>
+	 * <b>NOTE</b>. Use {@link org.apache.commons.lang3.time#DurationFormatUtils} for more 
+	 * advanced styles.
 	 *
 	 * @param period the period
 	 * @return the string
-	 * 
-	 * <b>NOTE</b>. Use class org.apache.commons.lang3.time.DurationFormatUtils for more 
-	 * advanced styles.
 	 */
 	public static String formatPeriod(long period) {
 		period /= 1000;
@@ -24,7 +23,7 @@ public class TextUtils {
 		final int min = (int) period % 60;
 		period /= 60;
 		final int hours = (int) period;
-		StringBuilder sb = new StringBuilder();
+		final StringBuilder sb = new StringBuilder();
 		append(sb, hours);
 		sb.append(':');
 		append(sb, min);
