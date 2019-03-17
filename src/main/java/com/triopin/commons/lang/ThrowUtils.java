@@ -7,19 +7,19 @@ public class ThrowUtils {
 	}
 
 	/**
-	 * Method to protect private utility classes constructor from creating instances 
+	 * Method to protect private utility classes constructor from creating instances
 	 * even using reflection framework.
 	 */
 	public static void noInstance() {
 		StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-		if(stackTrace.length >= 3) {
+		if (stackTrace.length >= 3) {
 			//	0 : java.lang.Thread.getStackTrace()
 			//	1 : com.triopin.commons.lang.ThrowUtils.noInstance()
 			//	2 : Always contained method noInstance() invoker element
 			StackTraceElement involkerElement = stackTrace[2];
 			if ("<init>".equals(involkerElement.getMethodName())) {
-				throw new AssertionError("No instances of class "
-						+ involkerElement.getClassName());
+				throw new AssertionError(
+						"No instances of class " + involkerElement.getClassName());
 			}
 		}
 		throw new UnsupportedOperationException(
@@ -28,6 +28,12 @@ public class ThrowUtils {
 
 	/**
 	 * Rethrows given throwable as runtime exception.
+	 * <p>
+	 * This method is based on articles <a
+	 * href="https://www.gamlor.info/wordpress/2010/02/throwing-checked-excpetions-like-unchecked-exceptions-in-java/">Throwing
+	 * Checked Exceptions Like Unchecked Exceptions in Java</a> and
+	 * <a href="http://robaustin.wikidot.com/rethrow-exceptions">How to Rethrow an Exception Without
+	 * Wrapping them</a>
 	 *
 	 * @param e the e
 	 * @return the runtime exception
@@ -36,7 +42,7 @@ public class ThrowUtils {
 		ThrowUtils.<RuntimeException>throwAny(e);
 
 		// This throw should actually never happen
-		throw new IllegalStateException(e);
+		throw new AssertionError("WTF");
 	}
 
 	@SuppressWarnings("unchecked")
